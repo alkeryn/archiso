@@ -8,10 +8,12 @@ cp -r "${isopath:-/usr/share/archiso/configs/$config}" ./
 cd $config
 
 cat ../pkgs >> packages.x86_64
+sed -i 's/^linux$/linux-lts/g' packages.x86_64
 
 cat <<'EOF' >> pacman.conf
 [archzfs]
-Server = http://archzfs.com/$repo/$arch
+SigLevel = Required
+Server = https://github.com/archzfs/archzfs/releases/download/experimental
 EOF
 
 # ssh setup
