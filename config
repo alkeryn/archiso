@@ -16,6 +16,9 @@ SigLevel = Required
 Server = https://github.com/archzfs/archzfs/releases/download/experimental
 EOF
 
+find . -type f -exec sed -i 's/vmlinuz-linux/vmlinuz-linux-lts/g' {} \;
+find . -type f -exec sed -i 's/initramfs-linux/initramfs-linux-lts/g' {} \;
+
 # ssh setup
 
 mkdir airootfs/root/.ssh
@@ -27,4 +30,3 @@ cat <<EOF >> profiledef.sh
   ["/root/.ssh/authorized_keys"]="0:0:0600"
 )
 EOF
-
